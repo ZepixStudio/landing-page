@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<title>Política de privacidad — Flow Stack · Zepix Studio</title>
+<link rel="canonical" href="https://zepixstudio.com/flowstack/privacy/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --violet: #6C63FF;
+    --violet-mid: #A89FFD;
+    --gold: #FFCA28;
+    --void: #0A0918;
+    --void-mid: #12102A;
+    --void-light: #1A1840;
+    --mist: #F2F0FF;
+    --gray: #8A86A8;
+    --white: #FFFFFF;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--void);
+    color: var(--mist);
+    line-height: 1.7;
+    padding: 48px 20px 80px;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; }
+  .back {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--violet-mid); text-decoration: none;
+    font-size: 0.9rem; font-weight: 500; margin-bottom: 28px;
+  }
+  .back:hover { color: var(--gold); }
+  h1 {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: 2.1rem; line-height: 1.15; color: var(--white);
+    letter-spacing: -0.02em; margin-bottom: 10px;
+  }
+  .meta {
+    color: var(--gray); font-size: 0.92rem; margin-bottom: 32px;
+    padding-bottom: 24px; border-bottom: 1px solid rgba(108,99,255,0.18);
+  }
+  .meta a { color: var(--violet-mid); }
+  h2 {
+    font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 1.3rem; color: var(--white);
+    margin: 38px 0 10px; letter-spacing: -0.01em;
+  }
+  h3 {
+    font-family: 'Syne', sans-serif; font-weight: 600;
+    font-size: 1.05rem; color: var(--violet-mid); margin: 24px 0 6px;
+  }
+  p { margin: 10px 0; color: var(--mist); }
+  ul { padding-left: 22px; margin: 10px 0; }
+  li { margin: 5px 0; }
+  a { color: var(--violet); word-break: break-word; }
+  a:hover { color: var(--gold); }
+  strong { color: var(--white); font-weight: 600; }
+  .card {
+    background: var(--void-mid);
+    border: 1px solid rgba(108,99,255,0.15);
+    border-radius: 18px;
+    padding: 36px 32px;
+  }
+  footer {
+    max-width: 760px; margin: 28px auto 0; text-align: center;
+    color: var(--gray); font-size: 0.82rem;
+  }
+  @media (max-width: 600px) {
+    .card { padding: 26px 20px; }
+    h1 { font-size: 1.7rem; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href="https://zepixstudio.com/">← Zepix Studio</a>
+    <div class="card">
+      <h1>Política de privacidad — Flow Stack</h1>
+      <p class="meta">
+        <strong>Última actualización:</strong> 2026-05-28<br>
+        <strong>Desarrollador:</strong> Zepix Studio<br>
+        <strong>Contacto:</strong> <a href="mailto:privacy@zepixstudio.com">privacy@zepixstudio.com</a>
+      </p>
+
+      <p>
+        Flow Stack es un juego mobile de apilar bloques, 100% offline en su lógica
+        principal. No registramos cuentas, no pedimos correo, no guardamos
+        identificadores personales en nuestros servidores. Esta política describe
+        qué datos sí se recolectan, por qué y cómo.
+      </p>
+
+      <h2>Datos que NO recolectamos</h2>
+      <ul>
+        <li>Nombre real, correo electrónico, número de teléfono.</li>
+        <li>Localización GPS.</li>
+        <li>Contactos, fotos, micrófono, cámara.</li>
+        <li>Historial de navegación o de otras apps.</li>
+      </ul>
+
+      <h2>Datos que SÍ se recolectan (a través de terceros)</h2>
+
+      <h3>1. Crash reporting — Sentry</h3>
+      <p>
+        Cuando la aplicación encuentra un error inesperado, se envía a
+        <a href="https://sentry.io">Sentry</a> un reporte automático con:
+      </p>
+      <ul>
+        <li>Stack trace del error.</li>
+        <li>Versión de la app y del sistema operativo.</li>
+        <li>Modelo del dispositivo (ej. "iPhone 14 Pro").</li>
+        <li>Identificador anónimo de instalación.</li>
+      </ul>
+      <p>
+        <strong>Propósito:</strong> diagnosticar y corregir crashes. Los reportes
+        no contienen contenido del jugador (scores, nombres, etc.).
+      </p>
+
+      <h3>2. Anuncios — Google AdMob</h3>
+      <p>La versión gratuita muestra anuncios proporcionados por AdMob. AdMob recolecta:</p>
+      <ul>
+        <li>Identificador de publicidad del dispositivo (AAID en Android, IDFA en
+          iOS — el usuario puede resetearlo o limitarlo en Ajustes del SO).</li>
+        <li>Información técnica del dispositivo (modelo, OS, conexión).</li>
+        <li>País / región aproximada (a nivel de país).</li>
+      </ul>
+      <p><strong>Propósito:</strong> servir anuncios y medir su efectividad.</p>
+      <p>
+        <strong>iOS — App Tracking Transparency (ATT):</strong> la primera vez que
+        abres el juego, el sistema operativo te pregunta si das permiso para
+        tracking entre apps. Puedes rechazar y el juego sigue funcionando completo
+        — solo verás anuncios menos relevantes (contextuales en vez de
+        personalizados).
+      </p>
+      <p>
+        <strong>Compra "Quitar anuncios":</strong> desactiva la recolección de
+        datos de AdMob en el dispositivo (no se cargan más anuncios, no se
+        inicializa el SDK en el siguiente arranque).
+      </p>
+      <p>
+        Para más detalles sobre datos de AdMob:
+        <a href="https://policies.google.com/technologies/ads">https://policies.google.com/technologies/ads</a>
+      </p>
+
+      <h3>3. Compras dentro de la app — App Store / Play Store</h3>
+      <p>
+        Si compras "Quitar anuncios", la transacción la procesan Apple o Google
+        respectivamente. Nosotros NO recibimos tu información de pago — solo un
+        recibo anónimo de confirmación. Los términos de las plataformas aplican:
+      </p>
+      <ul>
+        <li>Apple: <a href="https://www.apple.com/legal/privacy/">https://www.apple.com/legal/privacy/</a></li>
+        <li>Google: <a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a></li>
+      </ul>
+
+      <h2>Datos almacenados localmente en tu dispositivo</h2>
+      <p>
+        Estos datos NUNCA salen del dispositivo, viven en el almacenamiento
+        privado de la app:
+      </p>
+      <ul>
+        <li>Tu récord más alto.</li>
+        <li>Preferencias (sonido on/off, vibración on/off).</li>
+        <li>Estado de la compra "Quitar anuncios" (espejo del recibo del store).</li>
+      </ul>
+      <p>Al desinstalar la app, estos datos se borran.</p>
+
+      <h2>Niños</h2>
+      <p>
+        Flow Stack es una aplicación de <strong>público general</strong> y
+        <strong>no está dirigida a menores de 13 años</strong>. No forma parte del
+        programa "Diseñado para familias" y <strong>no recolectamos
+        intencionalmente</strong> datos personales de menores de 13. Si crees que
+        un menor nos proporcionó datos, escríbenos y los eliminaremos.
+      </p>
+
+      <h2>Derechos del usuario</h2>
+      <ul>
+        <li><strong>Acceso / borrado de datos:</strong> no almacenamos datos en
+          nuestros servidores que estén ligados a tu identidad, por lo que no hay
+          nada que solicitar. Si quieres borrar lo que está en tu dispositivo:
+          desinstalar la app.</li>
+        <li><strong>Limitar tracking:</strong> Ajustes del sistema → Privacidad →
+          Tracking (iOS) o Ajustes → Privacidad → Anuncios → Eliminar
+          identificador (Android).</li>
+        <li><strong>Restaurar compras:</strong> Ajustes dentro de la app →
+          Restaurar compras.</li>
+      </ul>
+
+      <h2>Cambios en esta política</h2>
+      <p>
+        Si actualizamos esta política, lo verás reflejado en la fecha al inicio del
+        documento. Los cambios importantes se anunciarán en la descripción de la
+        app en las tiendas.
+      </p>
+
+      <h2>Contacto</h2>
+      <p>
+        Para cualquier pregunta sobre privacidad:
+        <a href="mailto:privacy@zepixstudio.com"><strong>privacy@zepixstudio.com</strong></a>
+      </p>
+    </div>
+  </div>
+  <footer>© 2026 Zepix Studio · Flow Stack</footer>
+</body>
+</html>
