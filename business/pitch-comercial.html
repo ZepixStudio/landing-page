@@ -1,0 +1,477 @@
+<title>ZepixBusiness — Tranquilidad Administrativa</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@500;700;800;900&family=Mulish:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+  /* Tokens calcados de globals.css del producto ZepixBusiness — misma marca, misma mano. */
+  :root {
+    --background: #fafaf9;
+    --foreground: #1c1917;
+    --card: #ffffff;
+    --card-foreground: #1c1917;
+    --primary: #0f766e;
+    --primary-foreground: #ffffff;
+    --secondary: #f5f5f4;
+    --muted: #f5f5f4;
+    --muted-foreground: #78716c;
+    --accent: #f0fdfa;
+    --accent-foreground: #0f766e;
+    --border: #e7e5e4;
+    --spark: #d97706;
+    --spark-soft: #fef3e2;
+    --danger: #dc2626;
+    --danger-soft: #fef2f2;
+    --shadow-card: 0 2px 8px -2px rgb(0 0 0 / 0.06);
+    --shadow-raised: 0 8px 24px -6px rgb(0 0 0 / 0.1);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --background: #0c0a09; --foreground: #fafaf9; --card: #1c1917; --card-foreground: #fafaf9;
+      --primary: #2dd4bf; --primary-foreground: #042f2e; --secondary: #292524; --muted: #292524;
+      --muted-foreground: #a8a29e; --accent: #134e4a; --accent-foreground: #ccfbf1; --border: #292524;
+      --spark: #fbbf24; --spark-soft: #3a2a0d; --danger: #f87171; --danger-soft: #3a1616;
+      --shadow-card: 0 2px 8px -2px rgb(0 0 0 / 0.4); --shadow-raised: 0 8px 24px -6px rgb(0 0 0 / 0.55);
+    }
+  }
+  :root[data-theme="dark"] {
+    --background: #0c0a09; --foreground: #fafaf9; --card: #1c1917; --card-foreground: #fafaf9;
+    --primary: #2dd4bf; --primary-foreground: #042f2e; --secondary: #292524; --muted: #292524;
+    --muted-foreground: #a8a29e; --accent: #134e4a; --accent-foreground: #ccfbf1; --border: #292524;
+    --spark: #fbbf24; --spark-soft: #3a2a0d; --danger: #f87171; --danger-soft: #3a1616;
+    --shadow-card: 0 2px 8px -2px rgb(0 0 0 / 0.4); --shadow-raised: 0 8px 24px -6px rgb(0 0 0 / 0.55);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: 'Mulish', system-ui, sans-serif;
+    line-height: 1.55;
+  }
+  h1, h2, h3, h4 { font-family: 'Urbanist', system-ui, sans-serif; text-wrap: balance; color: var(--foreground); line-height: 1.05; margin: 0; letter-spacing: -0.01em; }
+
+  .slide {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6rem 8vw 5rem;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .slide-inner { max-width: 1040px; margin: 0 auto; width: 100%; }
+
+  .slide-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--spark);
+    margin-bottom: 1.4rem;
+    display: block;
+  }
+
+  .dots {
+    position: fixed; right: 1.75rem; top: 50%; transform: translateY(-50%);
+    display: flex; flex-direction: column; gap: 0.6rem; z-index: 50;
+  }
+  .dots a { width: 8px; height: 8px; border-radius: 50%; background: var(--border); display: block; transition: background 0.2s, transform 0.2s; }
+  .dots a:hover, .dots a:focus-visible { background: var(--primary); transform: scale(1.35); outline: none; }
+  @media (max-width: 700px) { .dots { display: none; } }
+
+  /* SLIDE 0 — COVER, la que rompe */
+  #s0 {
+    background:
+      radial-gradient(circle at 12% 8%, color-mix(in srgb, var(--primary) 16%, transparent), transparent 45%),
+      radial-gradient(circle at 88% 82%, color-mix(in srgb, var(--spark) 14%, transparent), transparent 40%),
+      var(--background);
+    justify-content: space-between;
+    padding-top: 3.5rem;
+    padding-bottom: 2.5rem;
+    overflow: hidden;
+  }
+  .cover-brand { display: flex; align-items: center; gap: 0.7rem; }
+  .cover-brand .mark-box {
+    width: 34px; height: 34px; border-radius: 9px; background: var(--primary);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Urbanist', sans-serif; font-weight: 900; font-size: 1.05rem; color: var(--primary-foreground);
+    flex-shrink: 0;
+  }
+  .cover-brand .mark { font-family: 'Urbanist', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--foreground); }
+  .cover-brand .sub { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; color: var(--muted-foreground); letter-spacing: 0.06em; text-transform: uppercase; }
+
+  #s0 .cover-mid { display: flex; flex-direction: column; gap: 0; }
+  .cover-kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--primary);
+    background: var(--accent);
+    border: 1px solid color-mix(in srgb, var(--primary) 30%, transparent);
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    width: fit-content;
+    margin-bottom: 1.8rem;
+    letter-spacing: 0.02em;
+  }
+  #s0 h1 {
+    font-size: clamp(3rem, 8vw, 6.4rem);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    max-width: 15ch;
+  }
+  #s0 h1 .brk { display: block; }
+  #s0 h1 .hl { color: var(--primary); }
+  #s0 h1 .hl-spark { color: var(--spark); }
+  #s0 .cover-dek { font-size: 1.3rem; color: var(--muted-foreground); max-width: 44ch; margin-top: 1.6rem; font-weight: 500; }
+  #s0 .cover-foot { display: flex; justify-content: space-between; align-items: flex-end; font-size: 0.85rem; color: var(--muted-foreground); flex-wrap: wrap; gap: 1rem; }
+  .scroll-cue { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.06em; color: var(--muted-foreground); animation: bob 2s ease-in-out infinite; font-weight: 600; }
+  @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+  @media (prefers-reduced-motion: reduce) { .scroll-cue { animation: none; } }
+
+  .slide h2.big { font-size: clamp(2.1rem, 4.4vw, 3.4rem); font-weight: 800; max-width: 20ch; margin-bottom: 1.4rem; letter-spacing: -0.02em; }
+  .slide p.big-dek { font-size: 1.2rem; color: var(--muted-foreground); max-width: 62ch; margin-bottom: 0; font-weight: 500; }
+
+  /* SLIDE 1 — problem */
+  .pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.1rem; margin-top: 2.6rem; }
+  .pain-card {
+    background: var(--card); border: 1px solid var(--border); border-left: 4px solid var(--danger);
+    border-radius: var(--radius-card, 1rem); padding: 1.2rem 1.4rem; box-shadow: var(--shadow-card);
+  }
+  .pain-card .q { font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 700; color: var(--danger); margin-bottom: 0.4rem; }
+  .pain-card p { margin: 0; font-size: 0.98rem; color: var(--foreground); font-weight: 500; }
+
+  .urgency-strip {
+    margin-top: 2.6rem; background: var(--spark-soft);
+    border: 1px solid color-mix(in srgb, var(--spark) 40%, transparent);
+    border-radius: 1rem; padding: 1.4rem 1.7rem; display: flex; gap: 1.4rem; align-items: center; flex-wrap: wrap;
+  }
+  .urgency-strip .date { font-family: 'JetBrains Mono', monospace; font-size: 1.7rem; font-weight: 800; color: var(--spark); white-space: nowrap; }
+  .urgency-strip p { margin: 0; font-size: 0.98rem; color: var(--foreground); max-width: 55ch; font-weight: 500; }
+
+  /* SLIDE 2 — reframe */
+  .reframe-compare { display: grid; grid-template-columns: 1fr auto 1fr; gap: 1.6rem; align-items: center; margin-top: 2.6rem; }
+  .reframe-box { padding: 1.8rem; border-radius: 1rem; font-family: 'Urbanist', sans-serif; font-size: 1.4rem; font-weight: 700; line-height: 1.3; }
+  .reframe-box.old { background: var(--secondary); border: 1.5px dashed var(--border); color: var(--muted-foreground); }
+  .reframe-box.new { background: var(--accent); border: 1.5px solid color-mix(in srgb, var(--primary) 40%, transparent); color: var(--primary); }
+  .reframe-arrow { font-size: 2rem; color: var(--spark); font-weight: 900; }
+  @media (max-width: 700px) { .reframe-compare { grid-template-columns: 1fr; } .reframe-arrow { transform: rotate(90deg); justify-self: center; } }
+
+  /* SLIDE 3 — ladder, momento "big reveal" tipo pantalla de producto */
+  .ladder { display: flex; flex-direction: column; gap: 1rem; margin-top: 2.6rem; }
+  .rung {
+    display: grid; grid-template-columns: 100px 1fr; align-items: stretch;
+    background: var(--card); border: 1px solid var(--border); border-radius: 1rem;
+    box-shadow: var(--shadow-card); overflow: hidden; transition: box-shadow 0.2s;
+  }
+  .rung.n1, .rung.n2 { box-shadow: var(--shadow-raised); border-color: color-mix(in srgb, var(--primary) 25%, var(--border)); }
+  .rung .rung-num {
+    background: var(--accent); color: var(--primary); font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem; font-weight: 700; display: flex; align-items: center; justify-content: center; letter-spacing: 0.03em;
+  }
+  .rung.n4 .rung-num { background: var(--spark-soft); color: var(--spark); }
+  .rung-body { padding: 1.25rem 1.5rem 1.25rem 1.5rem; }
+  .rung-body h4 { font-family: 'Urbanist', sans-serif; font-weight: 800; font-size: 1.15rem; margin-bottom: 0.3rem; }
+  .rung-body .rung-phrase { font-family: 'Mulish', sans-serif; font-style: italic; font-weight: 600; color: var(--muted-foreground); font-size: 0.95rem; margin-bottom: 0.4rem; }
+  .rung-body p.desc { margin: 0; font-size: 0.92rem; color: var(--muted-foreground); font-weight: 500; }
+  .rung .status {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+    padding: 0.18rem 0.55rem; border-radius: 999px; margin-left: 0.5rem; white-space: nowrap;
+  }
+  .status.now { background: var(--accent); color: var(--primary); }
+  .status.next { background: var(--spark-soft); color: var(--spark); }
+
+  /* SLIDE 4 — platform grid */
+  .plat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1.1rem; margin-top: 2.6rem; }
+  .plat-card { background: var(--card); border: 1px solid var(--border); border-radius: 1rem; padding: 1.2rem 1.3rem; box-shadow: var(--shadow-card); }
+  .plat-card .plat-label { font-family: 'JetBrains Mono', monospace; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--spark); margin-bottom: 0.5rem; }
+  .plat-card h4 { font-family: 'Urbanist', sans-serif; font-weight: 700; font-size: 1.02rem; margin-bottom: 0.35rem; }
+  .plat-card p { margin: 0; font-size: 0.87rem; color: var(--muted-foreground); font-weight: 500; }
+
+  /* SLIDE 5 — why now, números gigantes */
+  .why-now-num { font-family: 'JetBrains Mono', monospace; font-size: clamp(3.2rem, 9vw, 6rem); font-weight: 800; font-variant-numeric: tabular-nums; color: var(--primary); line-height: 1; margin-bottom: 0.55rem; }
+  .why-now-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2.2rem; margin-top: 2.6rem; }
+  .why-now-item .lbl { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted-foreground); margin-top: 0.3rem; }
+  .why-now-item p.detail { font-size: 0.92rem; color: var(--muted-foreground); margin-top: 0.55rem; font-weight: 500; }
+
+  /* SLIDE 6 — positioning map */
+  .map-wrap { margin-top: 2.6rem; border: 1px solid var(--border); border-radius: 1rem; background: var(--card); box-shadow: var(--shadow-card); padding: 1.6rem; overflow-x: auto; }
+  svg text { font-family: 'Mulish', sans-serif; fill: var(--foreground); }
+  svg .axis-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; fill: var(--muted-foreground); letter-spacing: 0.03em; }
+  svg .grid-line { stroke: var(--border); stroke-width: 1; }
+  svg .dot-label { font-size: 12px; font-weight: 700; }
+  svg .dot-sub { font-size: 10px; fill: var(--muted-foreground); font-weight: 500; }
+
+  /* SLIDE 7 — entry offer */
+  .offer-card { margin-top: 2.6rem; background: var(--card); border: 1.5px solid color-mix(in srgb, var(--primary) 30%, var(--border)); border-radius: 1.25rem; padding: 2.2rem 2.4rem; box-shadow: var(--shadow-raised); max-width: 660px; }
+  .offer-card .offer-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--primary); margin-bottom: 0.7rem; }
+  .offer-card h3 { font-size: 1.6rem; font-weight: 800; margin-bottom: 0.9rem; }
+  .offer-card ul { margin: 0 0 1.3rem; padding-left: 1.3rem; }
+  .offer-card li { margin-bottom: 0.45rem; font-size: 0.98rem; font-weight: 500; }
+  .offer-price { font-family: 'JetBrains Mono', monospace; font-size: 1rem; font-weight: 600; color: var(--muted-foreground); border-top: 1px solid var(--border); padding-top: 1.1rem; }
+
+  /* SLIDE 8 — close */
+  #s8 {
+    background:
+      radial-gradient(circle at 85% 15%, color-mix(in srgb, var(--primary) 20%, transparent), transparent 50%),
+      var(--background);
+  }
+  #s8 h2.big { font-size: clamp(2.2rem, 5vw, 3.6rem); }
+  .close-cta { margin-top: 2.2rem; display: flex; gap: 1.1rem; flex-wrap: wrap; align-items: center; }
+  .close-cta .cta-btn {
+    font-family: 'Urbanist', sans-serif; font-weight: 800; background: var(--primary); color: var(--primary-foreground);
+    padding: 0.95rem 1.8rem; border-radius: 0.6rem; font-size: 1.05rem; box-shadow: var(--shadow-raised);
+  }
+  .close-cta .cta-note { font-size: 0.88rem; color: var(--muted-foreground); font-weight: 500; }
+
+  /* Footer de marca — presente en cada slide, discreto */
+  .brand-foot {
+    position: absolute; bottom: 1.4rem; left: 8vw; right: 8vw;
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--muted-foreground);
+    letter-spacing: 0.03em; opacity: 0.75;
+  }
+  .brand-foot .slide-index { font-variant-numeric: tabular-nums; }
+
+  ol.plain { padding-left: 1.2rem; margin: 0 0 1rem; }
+  ol.plain li { margin-bottom: 0.35rem; }
+</style>
+
+<nav class="dots" aria-label="Navegación de diapositivas">
+  <a href="#s0" aria-label="Portada"></a>
+  <a href="#s1" aria-label="El problema"></a>
+  <a href="#s2" aria-label="El reencuadre"></a>
+  <a href="#s3" aria-label="Los niveles"></a>
+  <a href="#s4" aria-label="La plataforma"></a>
+  <a href="#s5" aria-label="Por qué ahora"></a>
+  <a href="#s6" aria-label="Diferenciación"></a>
+  <a href="#s7" aria-label="Cómo empezar"></a>
+  <a href="#s8" aria-label="Contacto"></a>
+</nav>
+
+<div class="deck">
+
+  <!-- SLIDE 0 — COVER -->
+  <section class="slide" id="s0">
+    <div class="slide-inner" style="width:100%; display:flex; flex-direction:column; height:100%; justify-content:space-between;">
+      <div class="cover-brand">
+        <div class="mark-box">Z</div>
+        <div>
+          <div class="mark">ZepixBusiness</div>
+          <div class="sub">by Zepix Studio</div>
+        </div>
+      </div>
+      <div class="cover-mid">
+        <span class="cover-kicker">◆ Nueva forma de vender control administrativo</span>
+        <h1><span class="brk">Tu empresa,</span><span class="brk hl">administrativamente</span><span class="brk hl-spark">bajo control.</span></h1>
+        <p class="cover-dek">No vendemos un ERP. Ofrecemos la tranquilidad de saber que tu contabilidad, tu facturación y tus números están en orden — con una plataforma propia y gente real detrás, en la medida que tú decidas.</p>
+      </div>
+      <div class="cover-foot">
+        <span class="scroll-cue">↓ DESPLÁZATE</span>
+        <span>Presentación comercial · República Dominicana</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 1 — PROBLEM -->
+  <section class="slide" id="s1">
+    <div class="slide-inner">
+      <span class="slide-tag">01 · El problema</span>
+      <h2 class="big">La mayoría de las PYMEs no tiene un problema de software. Tiene un problema de control.</h2>
+      <div class="pain-grid">
+        <div class="pain-card"><div class="q">?</div><p>Facturan, pero no saben con certeza cuánto les deben sus clientes.</p></div>
+        <div class="pain-card"><div class="q">?</div><p>La información vive repartida entre Excel, WhatsApp y la memoria del dueño.</p></div>
+        <div class="pain-card"><div class="q">?</div><p>El contador trabaja separado de la operación diaria del negocio.</p></div>
+        <div class="pain-card"><div class="q">?</div><p>No tienen forma simple de saber si, al final del mes, están ganando dinero.</p></div>
+      </div>
+      <div class="urgency-strip">
+        <div class="date">15 NOV 2026</div>
+        <p>La DGII exige que pequeños, micro y no clasificados emitan <strong>exclusivamente</strong> comprobantes fiscales electrónicos (e-CF) desde esta fecha. Los comprobantes en papel dejan de ser válidos. Esto no es una opción — es una fecha límite real.</p>
+      </div>
+    </div>
+    <div class="brand-foot"><span>ZEPIXBUSINESS</span><span class="slide-index">01 / 09</span></div>
+  </section>
+
+  <!-- SLIDE 2 — REFRAME -->
+  <section class="slide" id="s2">
+    <div class="slide-inner">
+      <span class="slide-tag">02 · Nuestra idea central</span>
+      <h2 class="big">Cambiamos la pregunta que te estás haciendo.</h2>
+      <div class="reframe-compare">
+        <div class="reframe-box old">"¿Cuánto cuesta el software?"</div>
+        <div class="reframe-arrow">→</div>
+        <div class="reframe-box new">"¿Cuánto vale no tener que preocuparme por esto?"</div>
+      </div>
+      <p class="big-dek" style="margin-top:2.4rem;">ZepixBusiness es la plataforma donde vive tu contabilidad y tu facturación. Pero la oferta real no termina en el software: encima de la plataforma hay niveles crecientes de acompañamiento humano — hasta el punto de que nosotros llevemos tu contabilidad completa, o actuemos como tu departamento financiero externo.</p>
+    </div>
+    <div class="brand-foot"><span>ZEPIXBUSINESS</span><span class="slide-index">02 / 09</span></div>
+  </section>
+
+  <!-- SLIDE 3 — LADDER -->
+  <section class="slide" id="s3">
+    <div class="slide-inner">
+      <span class="slide-tag">03 · Cómo se estructura</span>
+      <h2 class="big">Cuatro niveles. Empiezas donde estás, subes cuando lo necesites.</h2>
+      <div class="ladder">
+        <div class="rung n1">
+          <div class="rung-num">01</div>
+          <div class="rung-body">
+            <h4>Plataforma <span class="status now">Disponible</span></h4>
+            <div class="rung-phrase">"Hazlo tú mismo."</div>
+            <p class="desc">Facturación con e-CF, contabilidad, inventario y compras — tú operas el sistema, nosotros lo mantenemos funcionando.</p>
+          </div>
+        </div>
+        <div class="rung n2">
+          <div class="rung-num">02</div>
+          <div class="rung-body">
+            <h4>Plataforma + Acompañamiento <span class="status now">Disponible</span></h4>
+            <div class="rung-phrase">"Hazlo con revisión."</div>
+            <p class="desc">Todo lo anterior, más soporte prioritario, capacitación continua y una revisión periódica de que tu operación está sana.</p>
+          </div>
+        </div>
+        <div class="rung n3">
+          <div class="rung-num">03</div>
+          <div class="rung-body">
+            <h4>Plataforma + Contabilidad gestionada <span class="status next">Próximamente</span></h4>
+            <div class="rung-phrase">"Hazlo por mí."</div>
+            <p class="desc">Llevamos tu registro contable, conciliaciones, cierre mensual y declaraciones ante la DGII, dentro de tu propia instancia del sistema.</p>
+          </div>
+        </div>
+        <div class="rung n4">
+          <div class="rung-num">04</div>
+          <div class="rung-body">
+            <h4>Departamento financiero externo <span class="status next">Visión</span></h4>
+            <div class="rung-phrase">"Ayúdame a dirigir financieramente mi empresa."</div>
+            <p class="desc">Flujo de caja, presupuesto, indicadores y reuniones periódicas — el rol de un CFO externo, con tus datos siempre a la mano.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="brand-foot"><span>ZEPIXBUSINESS</span><span class="slide-index">03 / 09</span></div>
+  </section>
+
+  <!-- SLIDE 4 — PLATFORM -->
+  <section class="slide" id="s4">
+    <div class="slide-inner">
+      <span class="slide-tag">04 · La base de todo</span>
+      <h2 class="big">Un ERP fiscal dominicano, ya en producción — no una promesa.</h2>
+      <p class="big-dek">ZepixBusiness factura, contabiliza, controla inventario y cobra hoy mismo en una empresa real. Esto es lo que soporta cada nivel de servicio:</p>
+      <div class="plat-grid">
+        <div class="plat-card"><div class="plat-label">Núcleo</div><h4>Empresa &amp; catálogos</h4><p>Clientes con RNC/cédula validados, productos con ITBIS por línea.</p></div>
+        <div class="plat-card"><div class="plat-label">Contable</div><h4>Contabilidad general</h4><p>Asientos balanceados, libro diario/mayor, cierre de período.</p></div>
+        <div class="plat-card"><div class="plat-label">Fiscal</div><h4>Facturación</h4><p>NCF, ITBIS y retenciones automáticas, NC/ND, DOP/USD.</p></div>
+        <div class="plat-card"><div class="plat-label">Operación</div><h4>Inventario &amp; Compras</h4><p>Costeo real, órdenes y recepciones de compra.</p></div>
+        <div class="plat-card"><div class="plat-label">Cartera</div><h4>CxC / CxP</h4><p>Cobros y pagos con diferencia cambiaria automática.</p></div>
+      </div>
+    </div>
+    <div class="brand-foot"><span>ZEPIXBUSINESS</span><span class="slide-index">04 / 09</span></div>
+  </section>
+
+  <!-- SLIDE 5 — WHY NOW -->
+  <section class="slide" id="s5">
+    <div class="slide-inner">
+      <span class="slide-tag">05 · Por qué ahora</span>
+      <h2 class="big">La ventana de decisión está abierta — y se cierra pronto.</h2>
+      <div class="why-now-grid">
+        <div class="why-now-item">
+          <div class="why-now-num">83K+</div>
+          <div class="lbl">emisores e-CF certificados</div>
+          <p class="detail">Al 31 de agosto de 2026, según la DGII — el mercado ya está en movimiento.</p>
+        </div>
+        <div class="why-now-item">
+          <div class="why-now-num">1</div>
+          <div class="lbl">plataforma con emisión embebida</div>
+          <p class="detail">Con nuestra certificación como Proveedor de Servicios de Facturación Electrónica, no dependes de un tercero aparte ni haces el trámite tú mismo.</p>
+        </div>
+        <div class="why-now-item">
+          <div class="why-now-num">10</div>
+          <div class="lbl">años de retención exigidos</div>
+          <p class="detail">La ley exige archivar los comprobantes electrónicos una década — nosotros lo resolvemos por ti, no es tu problema de infraestructura.</p>
+        </div>
+      </div>
+    </div>
+    <div class="brand-foot"><span>ZEPIXBUSINESS</span><span class="slide-index">05 / 09</span></div>
+  </section>
+
+  <!-- SLIDE 6 — POSITIONING -->
+  <section class="slide" id="s6">
+    <div class="slide-inner">
+      <span class="slide-tag">06 · Dónde estamos parados</span>
+      <h2 class="big">No competimos por ser los únicos. Competimos por ser los más completos.</h2>
+      <div class="map-wrap">
+        <svg viewBox="0 0 720 420" width="100%" style="max-width:720px; display:block; margin:0 auto;" role="img" aria-label="Mapa de posicionamiento: profundidad de servicio versus alcance funcional">
+          <line class="grid-line" x1="60" y1="30" x2="60" y2="370"></line>
+          <line class="grid-line" x1="60" y1="370" x2="680" y2="370"></line>
+          <line class="grid-line" x1="60" y1="200" x2="680" y2="200" stroke-dasharray="3,4"></line>
+          <line class="grid-line" x1="370" y1="30" x2="370" y2="370" stroke-dasharray="3,4"></line>
+          <text class="axis-label" x="680" y="392" text-anchor="end">SOFTWARE + SERVICIO INTEGRADO →</text>
+          <text class="axis-label" x="60" y="392">SOLO SOFTWARE</text>
+          <text class="axis-label" x="30" y="30" transform="rotate(-90 30 30)" text-anchor="start">ERP COMPLETO →</text>
+          <text class="axis-label" x="30" y="365" transform="rotate(-90 30 365)" text-anchor="end">SOLO FACTURACIÓN</text>
+
+          <circle cx="140" cy="320" r="7" fill="var(--muted-foreground)"></circle>
+          <text class="dot-label" x="155" y="318" fill="var(--foreground)">Alegra / Pacioli / Xoe</text>
+          <text class="dot-sub" x="155" y="333">facturación e-CF barata</text>
+
+          <circle cx="220" cy="90" r="7" fill="var(--muted-foreground)"></circle>
+          <text class="dot-label" x="235" y="88" fill="var(--foreground)">SAP B1 / Softland</text>
+          <text class="dot-sub" x="235" y="103">ERP corporativo, sin servicio contable</text>
+
+          <circle cx="560" cy="200" r="7" fill="var(--muted-foreground)"></circle>
+          <text class="dot-label" x="575" y="198" fill="var(--foreground)">Outsourcing contable</text>
+          <text class="dot-sub" x="575" y="213">servicio fuerte, software de terceros</text>
+
+          <circle cx="470" cy="150" r="7" fill="var(--muted-foreground)"></circle>
+          <text class="dot-label" x="485" y="148" fill="var(--foreground)">Trinitaria Digital</text>
+          <text class="dot-sub" x="485" y="163">sistema propio + asesoría, sin contabilidad formal profunda</text>
+
+          <circle cx="600" cy="70" r="11" fill="var(--primary)"></circle>
+          <circle cx="600" cy="70" r="18" fill="none" stroke="var(--primary)" stroke-width="1.5" opacity="0.4"></circle>
+          <text class="dot-label" x="480" y="55" fill="var(--primary)" font-size="14">ZepixBusiness</text>
+          <text class="dot-sub" x="480" y="35">ERP formal completo + niveles de acompañamiento</text>
+        </svg>
+      </div>
+      <p style="font-size:0.85rem; color:var(--muted-foreground); margin-top:1.1rem; font-weight:500;">Trinitaria Digital ya opera un modelo de software + asesoría combinada en RD, lo que confirma que el mercado paga por esta categoría. La diferencia de ZepixBusiness es la profundidad del ERP de fondo: cierre de período con bloqueo real, libro mayor/diario completo, costeo de inventario ponderado y cartera con diferencia cambiaria — piezas de contabilidad formal, no solo captura de gastos y facturación.</p>
+    </div>
+    <div class="brand-foot"><span>ZEPIXBUSINESS</span><span class="slide-index">06 / 09</span></div>
+  </section>
+
+  <!-- SLIDE 7 — ENTRY OFFER -->
+  <section class="slide" id="s7">
+    <div class="slide-inner">
+      <span class="slide-tag">07 · Cómo empezar</span>
+      <h2 class="big">Entras por lo urgente. Te quedas por lo que resuelve.</h2>
+      <p class="big-dek">La puerta de entrada es simple: resolver tu obligación de facturación electrónica antes del 15 de noviembre. A partir de ahí, tú decides cuánto de tu operación administrativa quieres delegar.</p>
+      <div class="offer-card">
+        <div class="offer-eyebrow">Oferta de entrada</div>
+        <h3>Plataforma + Acompañamiento</h3>
+        <ul>
+          <li>Facturación con e-CF embebido, lista antes de la fecha límite de la DGII</li>
+          <li>Contabilidad, inventario y compras en el mismo sistema</li>
+          <li>Migración de tu catálogo de clientes, productos y cuentas</li>
+          <li>Capacitación a tu equipo y soporte prioritario</li>
+          <li>Revisión periódica de que tu operación está en orden</li>
+        </ul>
+        <div class="offer-price">Precio conversado según tamaño de tu operación — no hay un plan único que le quede bien a todos.</div>
+      </div>
+    </div>
+    <div class="brand-foot"><span>ZEPIXBUSINESS</span><span class="slide-index">07 / 09</span></div>
+  </section>
+
+  <!-- SLIDE 8 — CLOSE -->
+  <section class="slide" id="s8">
+    <div class="slide-inner">
+      <span class="slide-tag">08 · Siguiente paso</span>
+      <h2 class="big">Hablemos de tu operación, no de nuestras funcionalidades.</h2>
+      <p class="big-dek">Una conversación de 30 minutos basta para saber si tiene sentido — y para que sepas exactamente qué necesitas resolver antes del 15 de noviembre.</p>
+      <div class="close-cta">
+        <span class="cta-btn">hello@zepix.studio</span>
+        <span class="cta-note">ZepixBusiness es un producto de Zepix Studio — desarrollo de software a medida para el mercado dominicano</span>
+      </div>
+    </div>
+    <div class="brand-foot"><span>ZEPIX STUDIO · zepix.studio</span><span class="slide-index">09 / 09</span></div>
+  </section>
+
+</div>
