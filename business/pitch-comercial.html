@@ -43,8 +43,9 @@
   }
 
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; background: var(--background); }
   body {
+    margin: 0;
     background: var(--background);
     color: var(--foreground);
     font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
@@ -81,6 +82,19 @@
   .dots a { width: 8px; height: 8px; border-radius: 50%; background: var(--border); display: block; transition: background 0.2s, transform 0.2s; }
   .dots a:hover, .dots a:focus-visible { background: var(--primary); transform: scale(1.35); outline: none; }
   @media (max-width: 700px) { .dots { display: none; } }
+
+  .theme-toggle {
+    position: fixed; right: 1.75rem; bottom: 1.75rem; z-index: 50;
+    width: 44px; height: 44px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--card); border: 1px solid var(--border); box-shadow: var(--shadow-card);
+    cursor: pointer; color: var(--foreground); font-size: 1.15rem; line-height: 1;
+    transition: transform 0.15s, background 0.2s;
+  }
+  .theme-toggle:hover { transform: scale(1.06); }
+  .theme-toggle .icon-dark { display: none; }
+  :root[data-theme="dark"] .theme-toggle .icon-light { display: none; }
+  :root[data-theme="dark"] .theme-toggle .icon-dark { display: inline; }
 
   /* SLIDE 0 — COVER, la que rompe */
   #s0 {
@@ -275,6 +289,37 @@
 
   ol.plain { padding-left: 1.2rem; margin: 0 0 1rem; }
   ol.plain li { margin-bottom: 0.35rem; }
+
+  /* Impresión: replicar la apariencia en pantalla, una diapositiva exacta por hoja Letter horizontal */
+  @page {
+    size: 11in 8.5in;
+    margin: 0;
+  }
+  @media print {
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; color-adjust: exact; }
+    html, body { background: var(--background); width: 11in; height: auto; }
+    .dots, .theme-toggle { display: none !important; }
+    .slide {
+      width: 11in;
+      height: 8.5in;
+      min-height: 0;
+      max-height: 8.5in;
+      padding: 0.45in 0.5in 0.7in;
+      box-sizing: border-box;
+      overflow: visible;
+      page-break-after: always;
+      break-after: page;
+      page-break-inside: avoid;
+      border-bottom: none;
+    }
+    .slide:last-of-type { page-break-after: auto; break-after: auto; }
+    .brand-foot { bottom: 0.3in; left: 0.5in; right: 0.5in; }
+    .ladder { gap: 0.7rem; margin-top: 1.8rem; }
+    .rung-body { padding: 1rem 1.4rem; }
+    .reframe-compare, .urgency-strip, .offer-card, .map-wrap { margin-top: 1.8rem; }
+    .pain-grid { grid-template-columns: repeat(4, 1fr); }
+    .slide h2.big { font-size: 2.85rem; max-width: 28ch; }
+  }
 </style>
 
 <nav class="dots" aria-label="Navegación de diapositivas">
@@ -289,6 +334,11 @@
   <a href="#s8" aria-label="Contacto"></a>
   <a href="#s9" aria-label="Zepix Studio"></a>
 </nav>
+
+<button type="button" class="theme-toggle" id="themeToggle" aria-label="Cambiar tema claro/oscuro">
+  <span class="icon-light">🌙</span>
+  <span class="icon-dark">☀️</span>
+</button>
 
 <div class="deck">
 
@@ -352,7 +402,7 @@
   <section class="slide" id="s3">
     <div class="slide-inner">
       <span class="slide-tag">03 · Cómo se estructura</span>
-      <h2 class="big">Cuatro niveles. Empiezas donde estás, subes cuando lo necesites.</h2>
+      <h2 class="big">Cuatro niveles. Empiezas donde estás,<br>subes cuando lo necesites.</h2>
       <div class="ladder">
         <div class="rung n1">
           <div class="rung-num">01</div>
@@ -491,3 +541,29 @@
   </section>
 
 </div>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    var STORAGE_KEY = 'zepix-pitch-theme';
+    var toggleBtn = document.getElementById('themeToggle');
+
+    function currentTheme() {
+      var stored = localStorage.getItem(STORAGE_KEY);
+      if (stored === 'light' || stored === 'dark') return stored;
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+
+    function applyTheme(theme) {
+      root.setAttribute('data-theme', theme);
+    }
+
+    applyTheme(currentTheme());
+
+    toggleBtn.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      applyTheme(next);
+      localStorage.setItem(STORAGE_KEY, next);
+    });
+  })();
+</script>
